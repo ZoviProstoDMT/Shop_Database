@@ -33,7 +33,7 @@
                   <Font size="17.0" />
                </font>
             </PasswordField>
-            <Button fx:id="lognsignIpButton" layoutX="299.0" layoutY="229.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: FFB961;" text="ВОЙТИ">
+            <Button fx:id="loginSignInButton" layoutX="299.0" layoutY="229.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: FFB961;" text="ВОЙТИ">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
@@ -50,9 +50,9 @@
             <Font name="Impact" size="45.0" />
          </font>
       </Label>
-      <Button fx:id="loginSignUpButton" layoutX="536.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: FFB961;" text="Зарегистрироваться">
+      <Button fx:id="loginSignUpButton" layoutX="561.0" layoutY="20.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: FFB961;" text="Регистрация">
          <font>
-            <Font name="Calibri Bold" size="14.0" />
+            <Font name="Calibri Bold" size="16.0" />
          </font>
       </Button>
    </children>

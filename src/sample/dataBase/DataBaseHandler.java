@@ -32,4 +32,21 @@ public class DataBaseHandler extends Configs {
             e.printStackTrace();
         }
     }
+    public ResultSet getUser(User user) {
+        ResultSet resSet = null;
+        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_USERNAME + " =? AND " + Const.USER_PASSWORD + " =?";
+        try {
+            PreparedStatement prSt = getDbconnection().prepareStatement(select);
+            prSt.setString(1,user.getUsername());
+            prSt.setString(2,user.getPassword());
+            resSet = prSt.executeQuery();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resSet;
+    }
 }
