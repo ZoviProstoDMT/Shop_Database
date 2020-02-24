@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: FADFAD;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ChooseDBController">
+    <children>
+      <ImageView fitHeight="328.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/bg1.png" />
+         </image>
+      </ImageView>
+        <AnchorPane layoutY="101.0" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: FAFAFA;">
+            <children>
+            <Button fx:id="chooseCustomersButton" layoutX="239.0" layoutY="66.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="221.0" style="-fx-border-color: FFB961;" text="Customers">
+               <font>
+                  <Font name="Calibri Bold" size="27.0" />
+               </font>
+            </Button>
+                <Label layoutX="151.0" layoutY="14.0" text="Выберите таблицу для работы:" textFill="#5c5c5c">
+                    <font>
+                        <Font name="Calibri" size="30.0" />
+                    </font>
+                </Label>
+            <Button fx:id="chooseProductsButton" layoutX="238.0" layoutY="136.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="222.0" style="-fx-border-color: FFB961;" text="Products">
+               <font>
+                  <Font name="Calibri Bold" size="27.0" />
+               </font>
+            </Button>
+            <Button fx:id="chooseOrdersButton" layoutX="238.0" layoutY="206.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="222.0" style="-fx-border-color: FFB961;" text="Odrers">
+               <font>
+                  <Font name="Calibri Bold" size="27.0" />
+               </font>
+            </Button>
+            </children>
+        </AnchorPane>
+      <Label layoutX="203.0" layoutY="20.0" prefHeight="64.0" prefWidth="296.0" style="-fx-background-color: fafafa;" textFill="#5c5c5c">
+         <font>
+            <Font name="Calibri" size="30.0" />
+         </font>
+      </Label>
+        <Label layoutX="213.0" layoutY="24.0" text="Shop Database">
+            <font>
+                <Font name="Impact" size="45.0" />
+            </font>
+        </Label>
+      <ImageView fx:id="chooseBackButtom" fitHeight="50.0" fitWidth="50.0" layoutX="36.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/back-icon.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>
