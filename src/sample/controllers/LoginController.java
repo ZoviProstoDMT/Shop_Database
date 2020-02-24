@@ -39,18 +39,7 @@ public class LoginController {
     @FXML
     void initialize() {
         loginSignUpButton.setOnAction(event -> {
-            loginSignUpButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/signUpPage.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = loader.getRoot();
-            Stage signUpStage = new Stage();
-            signUpStage.setScene(new Scene(root));
-            signUpStage.showAndWait();
+            openNewScene("/sample/view/signUpPage.fxml");
         });
         loginSignInButton.setOnAction(event -> {
             String logintext = loginField.getText().trim();
@@ -78,7 +67,9 @@ public class LoginController {
             e.printStackTrace();
         }
         if (counter >= 1) {
-            System.out.println("Success!");
+            loginSignInButton.setOnAction(event -> {
+                openNewScene("/sample/view/chooseTabble.fxml");
+            });
         }
         else {
             Shake loginFieldAnim = new Shake(loginField);
@@ -86,5 +77,20 @@ public class LoginController {
             loginFieldAnim.playAnim();
             loginPassFieldAnim.playAnim();
         }
+    }
+    public void openNewScene(String window) {
+            loginSignInButton.getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(window));
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Parent root = loader.getRoot();
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.setResizable(false);
+            newStage.showAndWait();
     }
 }
