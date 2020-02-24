@@ -12,6 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("view/loginPage.fxml"));
         primaryStage.setScene(new Scene(root, 700, 400));
+        primaryStage.setResizable(false);
         primaryStage.setTitle("Shop Database");
         primaryStage.show();
     }
