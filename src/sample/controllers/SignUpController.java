@@ -12,13 +12,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import sample.Main;
 import sample.dataBase.DataBaseHandler;
 import sample.dataBase.User;
 
 public class SignUpController {
-
     @FXML
     private ResourceBundle resources;
 
@@ -59,6 +58,7 @@ public class SignUpController {
     void initialize() {
         signUpButton.setOnAction(event -> {
             signUpNewUser();
+            System.out.println("SUCCESS REGISTRATION");
         });
     }
 

@@ -66,9 +66,9 @@ public class LoginController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (counter >= 1) {
+        if (counter != 0) {
             loginSignInButton.setOnAction(event -> {
-                openNewScene("/sample/view/chooseTabble.fxml");
+                openNewScene("/sample/view/chooseTable.fxml");
             });
         }
         else {
