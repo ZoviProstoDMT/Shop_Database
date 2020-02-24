@@ -51,5 +51,33 @@ public class LoginController {
             signUpStage.setScene(new Scene(root));
             signUpStage.showAndWait();
         });
+        loginSignInButton.setOnAction(event -> {
+            String logintext = loginField.getText().trim();
+            String passtext = loginPassField.getText().trim();
+            if (!logintext.equals("") && !passtext.equals("")) {
+                loginUser(logintext, passtext);
+            }
+            else System.out.println("Login and Password is empty");
+
+        });
+    }
+
+    private void loginUser(String logintext, String passtext) {
+        DataBaseHandler dbHandler = new DataBaseHandler();
+        User user = new User();
+        user.setUsername(logintext);
+        user.setPassword(passtext);
+        ResultSet result = dbHandler.getUser(user);
+        int counter = 0;
+        try {
+            while (result.next()) {
+                counter++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (counter >= 1) {
+            System.out.println("Success!");
+        }
     }
 }
