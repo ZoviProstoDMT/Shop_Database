@@ -39,17 +39,11 @@ public class LoginController {
 
     @FXML
     void initialize() {
-        loginSignUpButton.setOnAction(event -> {
-            openNewScene("/sample/view/signUpPage.fxml");
-        });
+        loginSignUpButton.setOnAction(event -> openNewScene("/sample/view/signUpPage.fxml"));
         loginSignInButton.setOnAction(event -> {
             String logintext = loginField.getText().trim();
             String passtext = loginPassField.getText().trim();
-            if (!logintext.equals("") && !passtext.equals("")) {
-                loginUser(logintext, passtext);
-            }
-            else System.out.println("Login and Password is empty");
-
+            loginUser(logintext, passtext);
         });
     }
 
@@ -77,16 +71,12 @@ public class LoginController {
                 e.printStackTrace();
             }
             System.out.println("Роль авторизованного пользователя: " + userRole);
-            if (userRole.equals("Superuser")) {
-                loginSignInButton.setOnAction(event -> {
-                    openNewScene("/sample/view/superuserPage.fxml");
-                });
-            }
-            else if (userRole.equals("Low")) {
-                loginSignInButton.setOnAction(event -> {
-                    openNewScene("/sample/view/userPage.fxml");
-                });
-            }
+
+            if (userRole.equals("Superuser"))
+                loginSignInButton.setOnAction(event -> openNewScene("/sample/view/superuserPage.fxml"));
+
+            else if (userRole.equals("Low"))
+                loginSignInButton.setOnAction(event -> openNewScene("/sample/view/userPage.fxml"));
         }
         else {
             Shake loginFieldAnim = new Shake(loginField);
@@ -108,6 +98,6 @@ public class LoginController {
         Stage newStage = new Stage();
         newStage.setScene(new Scene(root));
         newStage.setResizable(false);
-        newStage.showAndWait();
+        newStage.show();
     }
 }
