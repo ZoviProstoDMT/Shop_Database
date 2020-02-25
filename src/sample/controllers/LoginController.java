@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +59,7 @@ public class LoginController {
         user.setUsername(logintext);
         user.setPassword(passtext);
         ResultSet result = dbHandler.getUser(user);
+        ResultSet resultRole = dbHandler.getUserRole(user);
         int counter = 0;
         try {
             while (result.next()) {
@@ -67,6 +69,15 @@ public class LoginController {
             e.printStackTrace();
         }
         if (counter != 0) {
+            String userRole = null;
+            try {
+                if (resultRole.next())
+                userRole = resultRole.getString("role");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Роль авторизованного пользователя: " + userRole);
+
             loginSignInButton.setOnAction(event -> {
                 openNewScene("/sample/view/chooseTable.fxml");
             });
