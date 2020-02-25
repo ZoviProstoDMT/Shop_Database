@@ -72,15 +72,21 @@ public class LoginController {
             String userRole = null;
             try {
                 if (resultRole.next())
-                userRole = resultRole.getString("role");
+                    userRole = resultRole.getString("role");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
             System.out.println("Роль авторизованного пользователя: " + userRole);
-
-            loginSignInButton.setOnAction(event -> {
-                openNewScene("/sample/view/chooseTable.fxml");
-            });
+            if (userRole.equals("Superuser")) {
+                loginSignInButton.setOnAction(event -> {
+                    openNewScene("/sample/view/superuserPage.fxml");
+                });
+            }
+            else if (userRole.equals("Low")) {
+                loginSignInButton.setOnAction(event -> {
+                    openNewScene("/sample/view/userPage.fxml");
+                });
+            }
         }
         else {
             Shake loginFieldAnim = new Shake(loginField);
@@ -90,18 +96,18 @@ public class LoginController {
         }
     }
     public void openNewScene(String window) {
-            loginSignInButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(window));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = loader.getRoot();
-            Stage newStage = new Stage();
-            newStage.setScene(new Scene(root));
-            newStage.setResizable(false);
-            newStage.showAndWait();
+        loginSignInButton.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(root));
+        newStage.setResizable(false);
+        newStage.showAndWait();
     }
 }

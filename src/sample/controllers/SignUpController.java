@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import sample.Main;
 import sample.dataBase.DataBaseHandler;
 import sample.dataBase.User;
 
@@ -59,6 +58,10 @@ public class SignUpController {
         signUpButton.setOnAction(event -> {
             signUpNewUser();
             System.out.println("SUCCESS REGISTRATION");
+            signUpButton.getScene().getWindow().hide();
+        });
+        signUpBackIcon.setOnMouseClicked(event -> {
+            openNewScene("/sample/view/loginPage.fxml");
         });
     }
 
@@ -78,5 +81,20 @@ public class SignUpController {
         }
         User user = new User(firstname, lastname, username, password, location, gender);
         dbhandler.signUpUser(user);
+    }
+    public void openNewScene(String window) {
+        signUpButton.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(root));
+        newStage.setResizable(false);
+        newStage.show();
     }
 }
