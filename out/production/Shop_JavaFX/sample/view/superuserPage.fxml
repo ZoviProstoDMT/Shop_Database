@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: FADFAD;" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.SuperuserAppController">
+    <children>
+      <ImageView fitHeight="328.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/bg1.png" />
+         </image>
+      </ImageView>
+        <AnchorPane layoutY="101.0" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: FAFAFA;">
+         <children>
+                <Label fx:id="SuperuserRoleTextLabel" layoutX="34.0" layoutY="277.0" prefHeight="18.0" prefWidth="216.0" text="Вы успешно вошли как SuperUser" textFill="#5c5c5c">
+                    <font>
+                        <Font name="Calibri" size="15.0" />
+                    </font>
+                </Label>
+            <Circle fill="#ffb961" layoutX="19.0" layoutY="286.5" radius="4.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Button fx:id="SuperuserCustomers" layoutX="22.0" layoutY="66.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="141.0" style="-fx-border-color: FFB961;" text="Customers">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="SuperuserOrders" layoutX="190.0" layoutY="66.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="142.0" style="-fx-border-color: FFB961;" text="Orders">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="SuperuserProducts" layoutX="358.0" layoutY="66.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="142.0" style="-fx-border-color: FFB961;" text="Products">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+            <Label fx:id="SuperuserRoleTextLabel1" layoutX="23.0" layoutY="32.0" prefHeight="18.0" prefWidth="216.0" text="Работа с таблицами:" textFill="#5c5c5c">
+               <font>
+                  <Font name="Calibri" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="SuperuserRoleTextLabel11" layoutX="23.0" layoutY="139.0" prefHeight="18.0" prefWidth="216.0" text="Работа с пользователями:" textFill="#5c5c5c">
+               <font>
+                  <Font name="Calibri" size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="SuperuserUsers" layoutX="21.0" layoutY="171.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="142.0" style="-fx-border-color: FFB961;" text="Users">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+        </AnchorPane>
+      <Label layoutX="203.0" layoutY="20.0" prefHeight="64.0" prefWidth="296.0" style="-fx-background-color: fafafa;" textFill="#5c5c5c">
+         <font>
+            <Font name="Calibri" size="30.0" />
+         </font>
+      </Label>
+        <Label layoutX="213.0" layoutY="24.0" text="Shop Database">
+            <font>
+                <Font name="Impact" size="45.0" />
+            </font>
+        </Label>
+      <Button fx:id="SuperuserExitButton" layoutX="561.0" layoutY="20.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: FFB961;" text="Выйти">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>
