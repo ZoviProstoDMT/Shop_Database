@@ -46,7 +46,6 @@ public class LoginController {
             loginUser(logintext, passtext);
         });
     }
-
     private void loginUser(String logintext, String passtext) {
         DataBaseHandler dbHandler = new DataBaseHandler();
         User user = new User();
