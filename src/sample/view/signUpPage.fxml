@@ -26,7 +26,7 @@
                         <Font size="15.0" />
                     </font>
                 </TextField>
-                <Button fx:id="signUpButton" layoutX="237.0" layoutY="235.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" style="-fx-background-color: FFB961;" text="ЗАРЕГИСТРИРОВАТЬСЯ">
+                <Button fx:id="signUpButton" layoutX="237.0" layoutY="233.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="208.0" style="-fx-background-color: FFB961;" text="ЗАРЕГИСТРИРОВАТЬСЯ">
                     <font>
                         <Font name="Calibri Bold" size="18.0" />
                     </font>
@@ -52,7 +52,7 @@
                   <Font size="15.0" />
                </font>
             </PasswordField>
-            <ComboBox fx:id="signUpCountry" editable="true" layoutX="227.0" layoutY="175.0" prefHeight="34.0" prefWidth="246.0" promptText="Страна" style="-fx-border-color: FFB961;" />
+            <ComboBox fx:id="signUpCountry" editable="true" layoutX="218.0" layoutY="175.0" prefHeight="34.0" prefWidth="246.0" promptText="Страна" style="-fx-border-color: FFB961;" />
             </children>
         </AnchorPane>
         <Label layoutX="203.0" layoutY="20.0" prefHeight="64.0" prefWidth="296.0" style="-fx-background-color: fafafa;" textFill="#5c5c5c">
@@ -65,7 +65,7 @@
                 <Font name="Impact" size="45.0" />
             </font>
         </Label>
-      <ImageView fx:id="signUpBackIcon" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="36.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="signUpBackIcon" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" layoutX="36.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" styleClass="button">
          <image>
             <Image url="@../assets/back-icon.png" />
          </image>

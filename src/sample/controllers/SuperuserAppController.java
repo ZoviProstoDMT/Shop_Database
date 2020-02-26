@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -20,25 +21,43 @@ public class SuperuserAppController {
     private URL location;
 
     @FXML
+    private PieChart suPieChart;
+
+    @FXML
     private Label superuserRoleTextLabel;
-
-    @FXML
-    private Button superuserCustomers;
-
-    @FXML
-    private Button superuserOrders;
-
-    @FXML
-    private Button superuserProducts;
 
     @FXML
     private Label superuserRoleTextLabel1;
 
     @FXML
-    private Label superuserRoleTextLabel11;
+    private Button suOrdersAdd;
 
     @FXML
-    private Button superuserUsers;
+    private Button suOrdersDell;
+
+    @FXML
+    private Button suOrdersFind;
+
+    @FXML
+    private Button suProductsAdd;
+
+    @FXML
+    private Button suProductsDell;
+
+    @FXML
+    private Button suProductsFind;
+
+    @FXML
+    private Button suUsersFind;
+
+    @FXML
+    private Button suUsersDell;
+
+    @FXML
+    private Button suUsersAdd;
+
+    @FXML
+    private Label superuserRoleTextLabel11;
 
     @FXML
     private Button superuserExitButton;
