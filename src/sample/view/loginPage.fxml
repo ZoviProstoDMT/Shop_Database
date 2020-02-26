@@ -45,7 +45,7 @@
             <Font name="Calibri" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="212.0" layoutY="24.0" text="Shop Database">
+      <Label layoutX="213.0" layoutY="24.0" text="Shop Database">
          <font>
             <Font name="Impact" size="45.0" />
          </font>

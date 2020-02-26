@@ -38,6 +38,7 @@ public class UserAppController {
     void initialize() {
         userExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
     }
+
     public void openNewScene(String window) {
         userExitButton.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();

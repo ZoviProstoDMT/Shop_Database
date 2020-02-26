@@ -47,6 +47,7 @@ public class SuperuserAppController {
     void initialize() {
         superuserExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
     }
+
     public void openNewScene(String window) {
         superuserExitButton.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();

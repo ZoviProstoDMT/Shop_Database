@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,6 +45,7 @@ public class LoginController {
             loginUser(logintext, passtext);
         });
     }
+
     private void loginUser(String logintext, String passtext) {
         DataBaseHandler dbHandler = new DataBaseHandler();
         User user = new User();
@@ -70,7 +70,6 @@ public class LoginController {
                 e.printStackTrace();
             }
             System.out.println("Роль авторизованного пользователя: " + userRole);
-
             if (userRole.equals("Superuser"))
                 loginSignInButton.setOnAction(event -> openNewScene("/sample/view/superuserPage.fxml"));
 
