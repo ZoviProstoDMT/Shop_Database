@@ -30,45 +30,34 @@ public class SuperuserAppController {
     private Label superuserRoleTextLabel1;
 
     @FXML
-    private Button suOrdersAdd;
+    private Button customersButton;
 
     @FXML
-    private Button suOrdersDell;
+    private Button ordersButton;
 
     @FXML
-    private Button suOrdersFind;
+    private Button productsButton;
 
     @FXML
-    private Button suProductsAdd;
-
-    @FXML
-    private Button suProductsDell;
-
-    @FXML
-    private Button suProductsFind;
-
-    @FXML
-    private Button suUsersFind;
-
-    @FXML
-    private Button suUsersDell;
-
-    @FXML
-    private Button suUsersAdd;
+    private Button usersButton;
 
     @FXML
     private Label superuserRoleTextLabel11;
 
     @FXML
-    private Button superuserExitButton;
+    private Button ExitButton;
 
     @FXML
     void initialize() {
-        superuserExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
+        ExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
+        usersButton.setOnAction(event -> openNewScene("/sample/view/usersTablePage.fxml"));
+        productsButton.setOnAction(event -> openNewScene("/sample/view/productsTablePage.fxml"));
+        customersButton.setOnAction(event -> openNewScene("/sample/view/customersTablePage.fxml"));
+        ordersButton.setOnAction(event -> openNewScene("/sample/view/ordersTablePage.fxml"));
     }
 
     public void openNewScene(String window) {
-        superuserExitButton.getScene().getWindow().hide();
+        ExitButton.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         try {

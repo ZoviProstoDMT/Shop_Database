@@ -6,9 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.IOException;
+
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         Parent root = FXMLLoader.load(getClass().getResource("view/loginPage.fxml"));
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.setResizable(false);
@@ -18,4 +22,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

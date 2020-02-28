@@ -22,7 +22,7 @@
         <AnchorPane layoutY="101.0" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: FAFAFA;">
          <children>
             <PieChart fx:id="suPieChart" layoutX="310.0" layoutY="32.0" prefHeight="225.0" prefWidth="378.0" />
-                <Label fx:id="superuserRoleTextLabel" layoutX="34.0" layoutY="277.0" prefHeight="18.0" prefWidth="216.0" text="Вы успешно вошли как SuperUser" textFill="#5c5c5c">
+                <Label fx:id="superuserRoleTextLabel" layoutX="34.0" layoutY="277.0" prefHeight="18.0" prefWidth="258.0" text="Вы успешно вошли в роли Суперюзера" textFill="#5c5c5c">
                     <font>
                         <Font name="Calibri" size="15.0" />
                     </font>
@@ -35,7 +35,7 @@
             </Label>
             <TabPane layoutX="14.0" layoutY="45.0" prefHeight="210.0" prefWidth="276.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Заказы">
+                <Tab text="Продажи">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
@@ -44,45 +44,17 @@
                                     <Image url="@../assets/bg1.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="suOrdersAdd" layoutY="22.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Добавить заказ">
+                              <Button fx:id="customersButton" layoutY="22.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Покупатели">
                                  <font>
                                     <Font name="Calibri Bold" size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="suOrdersDell" layoutY="74.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Удалить заказ">
+                              <Button fx:id="ordersButton" layoutY="74.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Заказы">
                                  <font>
                                     <Font name="Calibri Bold" size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="suOrdersFind" layoutY="125.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Поиск по заказам">
-                                 <font>
-                                    <Font name="Calibri Bold" size="16.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                </Tab>
-                <Tab text="Продукция">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="328.0" fitWidth="700.0" layoutX="-196.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../assets/bg1.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="suProductsAdd" layoutY="22.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Добавить продукцию">
-                                 <font>
-                                    <Font name="Calibri Bold" size="16.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="suProductsDell" layoutY="74.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Удалить продукцию">
-                                 <font>
-                                    <Font name="Calibri Bold" size="16.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="suProductsFind" layoutY="125.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Поиск по продукции">
+                              <Button fx:id="productsButton" layoutY="125.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Товар">
                                  <font>
                                     <Font name="Calibri Bold" size="16.0" />
                                  </font>
@@ -100,17 +72,7 @@
                                     <Image url="@../assets/bg1.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="suUsersFind" layoutY="22.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Показать список сотрудников">
-                                 <font>
-                                    <Font name="Calibri Bold" size="16.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="suUsersDell" layoutY="125.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Понизить привилегии">
-                                 <font>
-                                    <Font name="Calibri Bold" size="16.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="suUsersAdd" layoutY="74.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Добавить привилегии">
+                              <Button fx:id="usersButton" layoutY="74.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="276.0" style="-fx-background-color: fafafa;" text="Сотрудники">
                                  <font>
                                     <Font name="Calibri Bold" size="16.0" />
                                  </font>
@@ -139,7 +101,7 @@
             </font>
         </Label>
       <Separator layoutY="372.0" prefHeight="8.0" prefWidth="700.0" />
-      <Button fx:id="superuserExitButton" layoutX="561.0" layoutY="20.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: FFB961;" text="Выйти">
+      <Button fx:id="ExitButton" layoutX="561.0" layoutY="20.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: FFB961;" text="Выйти">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>

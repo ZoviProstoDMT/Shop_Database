@@ -37,6 +37,9 @@ public class LoginController {
     private Button loginSignUpButton;
 
     @FXML
+    private Button ExitButton;
+
+    @FXML
     void initialize() {
         loginSignUpButton.setOnAction(event -> openNewScene("/sample/view/signUpPage.fxml"));
         loginSignInButton.setOnAction(event -> {
@@ -84,7 +87,7 @@ public class LoginController {
         }
     }
     public void openNewScene(String window) {
-        loginSignInButton.getScene().getWindow().hide();
+        ExitButton.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         try {

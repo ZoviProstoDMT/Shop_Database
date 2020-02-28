@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -20,27 +21,39 @@ public class UserAppController {
     private URL location;
 
     @FXML
-    private Label userRoleTextLabel;
+    private PieChart suPieChart;
 
     @FXML
-    private Button userCustomers;
+    private Label superuserRoleTextLabel;
 
     @FXML
-    private Button userProducts;
+    private Label superuserRoleTextLabel1;
 
     @FXML
-    private Label userRoleTextLabel1;
+    private Label superuserRoleTextLabel11;
 
     @FXML
-    private Button userExitButton;
+    private Button customersButton;
+
+    @FXML
+    private Button ordersButton;
+
+    @FXML
+    private Button productsButton;
+
+    @FXML
+    private Button ExitButton;
 
     @FXML
     void initialize() {
-        userExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
+        ExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
+        productsButton.setOnAction(event -> openNewScene("/sample/view/productsTablePage.fxml"));
+        customersButton.setOnAction(event -> openNewScene("/sample/view/customersTablePage.fxml"));
+        ordersButton.setOnAction(event -> openNewScene("/sample/view/ordersTablePage.fxml"));
     }
 
     public void openNewScene(String window) {
-        userExitButton.getScene().getWindow().hide();
+        ExitButton.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         try {

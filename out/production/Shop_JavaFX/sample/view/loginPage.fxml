@@ -55,5 +55,10 @@
             <Font name="Calibri Bold" size="16.0" />
          </font>
       </Button>
+      <Button fx:id="ExitButton" layoutX="26.0" layoutY="35.0" mnemonicParsing="false" opacity="0.0" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: FFB961;" text="Выйти">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

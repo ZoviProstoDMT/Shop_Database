@@ -1,4 +1,8 @@
 package sample.dataBase;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -50,6 +54,26 @@ public class DataBaseHandler extends Configs {
         return resSet;
     }
 
+    public ResultSet getAnyUser() {
+        ResultSet resultSet = null;
+        String select = "SELECT * FROM " + Const.USER_TABLE;
+        try {
+            while(resultSet.next()){
+                resultSet.getString(1);
+                resultSet.getString(2);
+                resultSet.getString(3);
+                resultSet.getString(4);
+                resultSet.getString(5);
+                resultSet.getString(6);
+                resultSet.getString(7);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
     public ResultSet getUserRole(User user) {
         ResultSet resSet = null;
         String selectRole = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_USERNAME + " =? AND " + Const.USER_PASSWORD + " =?";
@@ -68,3 +92,4 @@ public class DataBaseHandler extends Configs {
         return resSet;
     }
 }
+
