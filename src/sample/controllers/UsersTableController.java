@@ -3,18 +3,14 @@ package sample.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sample.dataBase.Const;
 import sample.dataBase.DataBaseHandler;
-import sample.dataBase.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -33,34 +29,46 @@ public class UsersTableController {
     private URL location;
 
     @FXML
+    private Label TextWithChanges;
+
+    @FXML
     private TableView<ObservableList> tableUsers;
 
     @FXML
-    private Label superuserRoleTextLabel;
+    private ImageView AddUser;
 
     @FXML
-    private TableColumn<User, Integer> iduserscolumn;
+    private ImageView DeleteUser;
 
     @FXML
-    private TableColumn<User, String> firtsnamecolumn;
+    private Label superuserRoleTextLabel1;
 
     @FXML
-    private TableColumn<?, ?> lastnamecolumn;
+    private Label superuserRoleTextLabel11;
 
     @FXML
-    private TableColumn<?, ?> userbamecolumn;
+    private Label superuserRoleTextLabel111;
 
     @FXML
-    private TableColumn<?, ?> passwordcolumn;
+    private ImageView UpRole;
 
     @FXML
-    private TableColumn<?, ?> locationcolumn;
+    private ImageView FindUser;
 
     @FXML
-    private TableColumn<?, ?> gendercolumn;
+    private ImageView DownRole;
 
     @FXML
-    private TableColumn<?, ?> rolecolumn;
+    private TextField IdField;
+
+    @FXML
+    private Label superuserRoleTextLabel1111;
+
+    @FXML
+    private TextField FirstnameField;
+
+    @FXML
+    private TextField UsernameField;
 
     @FXML
     private Button ExitButton;
@@ -73,6 +81,40 @@ public class UsersTableController {
         buildData();
         ExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
         BackIcon.setOnMouseClicked(event -> openNewScene("/sample/view/superuserPage.fxml"));
+        AddUser.setOnMouseClicked(event -> openNewScene("/sample/view/addUser.fxml"));
+        FindUser.setOnMouseClicked(event -> {
+            String searchId = IdField.getText().trim();
+            String namefield = FirstnameField.getText().trim();
+            String usernamefield = UsernameField.getText().trim();
+            findUser(searchId, namefield, usernamefield);
+        });
+        UpRole.setOnMouseClicked(event -> {
+            DataBaseHandler dbhandler = new DataBaseHandler();
+            ObservableList<ObservableList> list = buildData();
+            String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
+            System.out.println("Повышение роли для пользователя с юзернеймом: " + name);
+            dbhandler.upUserRole(name);
+            TextWithChanges.setText("Роль пользователя " + name + " успешно повышена");
+            openNewScene("/sample/view/usersTablePage.fxml");
+        });
+        DownRole.setOnMouseClicked(event -> {
+            DataBaseHandler dbhandler = new DataBaseHandler();
+            ObservableList<ObservableList> list = buildData();
+            String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
+            System.out.println("Понижение роли для пользователя с юзернеймом: " + name);
+            dbhandler.downUserRole(name);
+            openNewScene("/sample/view/usersTablePage.fxml");
+            TextWithChanges.setText("Роль пользователя " + name + " успешно понижена");
+        });
+        DeleteUser.setOnMouseClicked(event -> {
+            DataBaseHandler dbhandler = new DataBaseHandler();
+            ObservableList<ObservableList> list = buildData();
+            String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
+            System.out.println("Удалён пользователь с юзернеймом: " + name);
+            dbhandler.deleteUser(name);
+            TextWithChanges.setText("Пользователь " + name + " успешно удалён");
+            openNewScene("/sample/view/usersTablePage.fxml");
+        });
     }
 
     public void openNewScene(String window) {
@@ -90,7 +132,7 @@ public class UsersTableController {
         newStage.setResizable(false);
         newStage.show();
     }
-    public void buildData() {
+    public ObservableList<ObservableList> buildData() {
         ObservableList<ObservableList> data;
         DataBaseHandler dbHandler = new DataBaseHandler();
         data = FXCollections.observableArrayList();
@@ -122,7 +164,15 @@ public class UsersTableController {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
+        return data;
     }
+    private void findUser(String searchId, String namefield, String usernamefield) {
+        tableUsers.scrollTo(50);
 
+        /* tableUsers.getItems().stream().filter(item -> item.toString() == usernamefield).findAny().ifPresent(item -> {
+                    tableUsers.getSelectionModel().select(item);
+                    tableUsers.scrollTo(item);
+                }); */
+    }
 }
 

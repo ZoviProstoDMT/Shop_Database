@@ -91,5 +91,38 @@ public class DataBaseHandler extends Configs {
         }
         return resSet;
     }
+    public void deleteUser(String name) {
+        String delete = "DELETE FROM " + Const.USER_TABLE + " WHERE " + Const.USER_USERNAME + " ='" + name +"';";
+        try {
+            PreparedStatement prSt = getDbconnection().prepareStatement(delete);
+            prSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public void upUserRole(String name) {
+        String up = "UPDATE " + Const.USER_TABLE + " SET role = 'Superuser' WHERE " + Const.USER_USERNAME + " = '" + name + "';";
+        try {
+            PreparedStatement prSt = getDbconnection().prepareStatement(up);
+            prSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public void downUserRole(String name) {
+        String down = "UPDATE " + Const.USER_TABLE + " SET role = 'Low' WHERE " + Const.USER_USERNAME + " = '" + name + "';";
+        try {
+            PreparedStatement prSt = getDbconnection().prepareStatement(down);
+            prSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

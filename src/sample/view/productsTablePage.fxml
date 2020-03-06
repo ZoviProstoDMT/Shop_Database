@@ -19,7 +19,7 @@
       </ImageView>
         <AnchorPane layoutY="101.0" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: FAFAFA;">
          <children>
-                <Label fx:id="superuserRoleTextLabel" layoutX="34.0" layoutY="277.0" prefHeight="18.0" prefWidth="258.0" text="Вы успешно вошли в роли Суперюзера" textFill="#5c5c5c">
+                <Label fx:id="TextWithChanges" layoutX="34.0" layoutY="277.0" prefHeight="18.0" prefWidth="258.0" text="Вы успешно вошли в роли Суперюзера" textFill="#5c5c5c">
                     <font>
                         <Font name="Calibri" size="15.0" />
                     </font>
