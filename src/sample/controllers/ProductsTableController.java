@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import sample.Main;
 import sample.dataBase.Const;
 import sample.dataBase.DataBaseHandler;
 import sample.dataBase.User;
@@ -72,24 +73,8 @@ public class ProductsTableController {
     @FXML
     void initialize() {
         buildData();
-        ExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
-        BackIcon.setOnMouseClicked(event -> openNewScene("/sample/view/superuserPage.fxml"));
-    }
-
-    public void openNewScene(String window) {
-        ExitButton.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(window));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(root));
-        newStage.setResizable(false);
-        newStage.show();
+        ExitButton.setOnAction(event -> Main.openNewScene("/sample/view/loginPage.fxml"));
+        BackIcon.setOnMouseClicked(event -> Main.openNewScene("/sample/view/superuserPage.fxml"));
     }
     public void buildData() {
         ObservableList<ObservableList> data;

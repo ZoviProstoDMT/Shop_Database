@@ -11,6 +11,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import sample.Main;
 
 public class SuperuserAppController {
 
@@ -49,26 +50,10 @@ public class SuperuserAppController {
 
     @FXML
     void initialize() {
-        ExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
-        usersButton.setOnAction(event -> openNewScene("/sample/view/usersTablePage.fxml"));
-        productsButton.setOnAction(event -> openNewScene("/sample/view/productsTablePage.fxml"));
-        customersButton.setOnAction(event -> openNewScene("/sample/view/customersTablePage.fxml"));
-        ordersButton.setOnAction(event -> openNewScene("/sample/view/ordersTablePage.fxml"));
-    }
-
-    public void openNewScene(String window) {
-        ExitButton.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(window));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(root));
-        newStage.setResizable(false);
-        newStage.show();
+        ExitButton.setOnAction(event -> Main.openNewScene("/sample/view/loginPage.fxml"));
+        usersButton.setOnAction(event -> Main.openNewScene("/sample/view/usersTablePage.fxml"));
+        productsButton.setOnAction(event -> Main.openNewScene("/sample/view/productsTablePage.fxml"));
+        customersButton.setOnAction(event -> Main.openNewScene("/sample/view/customersTablePage.fxml"));
+        ordersButton.setOnAction(event -> Main.openNewScene("/sample/view/ordersTablePage.fxml"));
     }
 }

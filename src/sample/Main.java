@@ -10,17 +10,31 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Main extends Application {
+    static Stage stage = new Stage();
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         Parent root = FXMLLoader.load(getClass().getResource("view/loginPage.fxml"));
-        primaryStage.setScene(new Scene(root, 700, 400));
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("Shop Database");
-        primaryStage.show();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("Shop Database");
+        stage.show();
     }
+
+    public static void openNewScene(String window) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        stage.setScene(new Scene(root));
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
-
 }

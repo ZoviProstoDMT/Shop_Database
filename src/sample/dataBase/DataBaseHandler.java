@@ -54,42 +54,27 @@ public class DataBaseHandler extends Configs {
         return resSet;
     }
 
-    public ResultSet getAnyUser() {
-        ResultSet resultSet = null;
-        String select = "SELECT * FROM " + Const.USER_TABLE;
+    public void deleteUser(String name) {
+        String delete = "DELETE FROM " + Const.USER_TABLE + " WHERE " + Const.USER_USERNAME + " ='" + name +"';";
         try {
-            while(resultSet.next()){
-                resultSet.getString(1);
-                resultSet.getString(2);
-                resultSet.getString(3);
-                resultSet.getString(4);
-                resultSet.getString(5);
-                resultSet.getString(6);
-                resultSet.getString(7);
-            }
-        }
-        catch (SQLException e) {
+            PreparedStatement prSt = getDbconnection().prepareStatement(delete);
+            prSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return resultSet;
     }
-
-    public ResultSet getUserRole(User user) {
-        ResultSet resSet = null;
-        String selectRole = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_USERNAME + " =? AND " + Const.USER_PASSWORD + " =?";
+    public void changeUserRole(String name, String role) {
+        String up = "UPDATE " + Const.USER_TABLE + " SET role = '" + role + "' WHERE " + Const.USER_USERNAME + " = '" + name + "';";
         try {
-            PreparedStatement prSt = getDbconnection().prepareStatement(selectRole);
-            prSt.setString(1,user.getUsername());
-            prSt.setString(2,user.getPassword());
-            resSet = prSt.executeQuery();
-        }
-        catch (SQLException e) {
+            PreparedStatement prSt = getDbconnection().prepareStatement(up);
+            prSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return resSet;
     }
 }
 
