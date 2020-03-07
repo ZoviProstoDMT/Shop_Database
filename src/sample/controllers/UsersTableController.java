@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import sample.Main;
 import sample.dataBase.Const;
 import sample.dataBase.DataBaseHandler;
 import java.io.IOException;
@@ -79,9 +80,9 @@ public class UsersTableController {
     @FXML
     void initialize() {
         buildData();
-        ExitButton.setOnAction(event -> openNewScene("/sample/view/loginPage.fxml"));
-        BackIcon.setOnMouseClicked(event -> openNewScene("/sample/view/superuserPage.fxml"));
-        AddUser.setOnMouseClicked(event -> openNewScene("/sample/view/addUser.fxml"));
+        ExitButton.setOnAction(event -> Main.openNewScene("/sample/view/loginPage.fxml"));
+        BackIcon.setOnMouseClicked(event -> Main.openNewScene("/sample/view/superuserPage.fxml"));
+        AddUser.setOnMouseClicked(event -> Main.openNewScene("/sample/view/addUser.fxml"));
         FindUser.setOnMouseClicked(event -> {
             String searchId = IdField.getText().trim();
             String namefield = FirstnameField.getText().trim();
@@ -89,49 +90,36 @@ public class UsersTableController {
             findUser(searchId, namefield, usernamefield);
         });
         UpRole.setOnMouseClicked(event -> {
-            DataBaseHandler dbhandler = new DataBaseHandler();
-            ObservableList<ObservableList> list = buildData();
-            String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
-            System.out.println("Повышение роли для пользователя с юзернеймом: " + name);
-            dbhandler.upUserRole(name);
-            TextWithChanges.setText("Роль пользователя " + name + " успешно повышена");
-            openNewScene("/sample/view/usersTablePage.fxml");
+                DataBaseHandler dbhandler = new DataBaseHandler();
+                ObservableList<ObservableList> list = buildData();
+                String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
+                System.out.println("Повышение роли для пользователя с юзернеймом: " + name);
+                dbhandler.changeUserRole(name, "Superuser");
+                TextWithChanges.setText("Роль пользователя " + name + " успешно повышена");
+                Main.openNewScene("/sample/view/usersTablePage.fxml");
         });
         DownRole.setOnMouseClicked(event -> {
             DataBaseHandler dbhandler = new DataBaseHandler();
             ObservableList<ObservableList> list = buildData();
             String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
             System.out.println("Понижение роли для пользователя с юзернеймом: " + name);
-            dbhandler.downUserRole(name);
-            openNewScene("/sample/view/usersTablePage.fxml");
+            dbhandler.changeUserRole(name, "Low");
+            Main.openNewScene("/sample/view/usersTablePage.fxml");
             TextWithChanges.setText("Роль пользователя " + name + " успешно понижена");
         });
         DeleteUser.setOnMouseClicked(event -> {
-            DataBaseHandler dbhandler = new DataBaseHandler();
-            ObservableList<ObservableList> list = buildData();
-            String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
-            System.out.println("Удалён пользователь с юзернеймом: " + name);
-            dbhandler.deleteUser(name);
-            TextWithChanges.setText("Пользователь " + name + " успешно удалён");
-            openNewScene("/sample/view/usersTablePage.fxml");
+                DataBaseHandler dbhandler = new DataBaseHandler();
+                ObservableList<ObservableList> list = buildData();
+                String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
+            if (tableUsers.getSelectionModel().getSelectedIndex() >= 0) {
+                System.out.println("Удалён пользователь с юзернеймом: " + name);
+                dbhandler.deleteUser(name);
+                TextWithChanges.setText("Пользователь " + name + " успешно удалён");
+                Main.openNewScene("/sample/view/usersTablePage.fxml");
+            }
         });
     }
 
-    public void openNewScene(String window) {
-        ExitButton.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(window));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(root));
-        newStage.setResizable(false);
-        newStage.show();
-    }
     public ObservableList<ObservableList> buildData() {
         ObservableList<ObservableList> data;
         DataBaseHandler dbHandler = new DataBaseHandler();
@@ -167,8 +155,6 @@ public class UsersTableController {
         return data;
     }
     private void findUser(String searchId, String namefield, String usernamefield) {
-        tableUsers.scrollTo(50);
-
         /* tableUsers.getItems().stream().filter(item -> item.toString() == usernamefield).findAny().ifPresent(item -> {
                     tableUsers.getSelectionModel().select(item);
                     tableUsers.scrollTo(item);

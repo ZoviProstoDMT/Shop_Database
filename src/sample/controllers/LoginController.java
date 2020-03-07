@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.Main;
 import sample.animations.Shake;
 import sample.dataBase.DataBaseHandler;
 import sample.dataBase.User;
@@ -41,7 +44,7 @@ public class LoginController {
 
     @FXML
     void initialize() {
-        loginSignUpButton.setOnAction(event -> openNewScene("/sample/view/signUpPage.fxml"));
+        loginSignUpButton.setOnAction(event -> Main.openNewScene("/sample/view/signUpPage.fxml"));
         loginSignInButton.setOnAction(event -> {
             String logintext = loginField.getText().trim();
             String passtext = loginPassField.getText().trim();
@@ -55,7 +58,7 @@ public class LoginController {
         user.setUsername(logintext);
         user.setPassword(passtext);
         ResultSet result = dbHandler.getUser(user);
-        ResultSet resultRole = dbHandler.getUserRole(user);
+        ResultSet resultRole = dbHandler.getUser(user);
         int counter = 0;
         try {
             while (result.next()) {
@@ -74,10 +77,10 @@ public class LoginController {
             }
             System.out.println("Роль авторизованного пользователя: " + userRole);
             if (userRole.equals("Superuser"))
-                loginSignInButton.setOnAction(event -> openNewScene("/sample/view/superuserPage.fxml"));
+                Main.openNewScene("/sample/view/superuserPage.fxml");
 
             else if (userRole.equals("Low"))
-                loginSignInButton.setOnAction(event -> openNewScene("/sample/view/userPage.fxml"));
+                Main.openNewScene("/sample/view/userPage.fxml");
         }
         else {
             Shake loginFieldAnim = new Shake(loginField);
@@ -85,20 +88,5 @@ public class LoginController {
             loginFieldAnim.playAnim();
             loginPassFieldAnim.playAnim();
         }
-    }
-    public void openNewScene(String window) {
-        ExitButton.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(window));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(root));
-        newStage.setResizable(false);
-        newStage.show();
     }
 }

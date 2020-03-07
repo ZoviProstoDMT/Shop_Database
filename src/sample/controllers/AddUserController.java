@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import sample.Main;
 import sample.dataBase.DataBaseHandler;
 import sample.dataBase.User;
 
@@ -59,9 +60,9 @@ public class AddUserController {
         signUpButton.setOnAction(event -> {
             signUpNewUser();
             System.out.println("SUCCESS ADDING");
-            openNewScene("/sample/view/usersTablePage.fxml");
+            Main.openNewScene("/sample/view/usersTablePage.fxml");
         });
-        signUpBackIcon.setOnMouseClicked(event -> openNewScene("/sample/view/usersTablePage.fxml"));
+        signUpBackIcon.setOnMouseClicked(event -> Main.openNewScene("/sample/view/usersTablePage.fxml"));
         signUpCountry.setValue("Россия");
         signUpCountry.setItems(counties);
     }
@@ -90,20 +91,5 @@ public class AddUserController {
         }
         User user = new User(firstname, lastname, username, password, location, gender);
         dbhandler.signUpUser(user);
-    }
-    public void openNewScene(String window) {
-        signUpButton.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(window));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(root));
-        newStage.setResizable(false);
-        newStage.show();
     }
 }

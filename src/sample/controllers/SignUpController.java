@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import sample.Main;
 import sample.dataBase.DataBaseHandler;
 import sample.dataBase.User;
 
@@ -54,24 +55,17 @@ public class SignUpController {
     private ImageView signUpBackIcon;
 
     ObservableList<String> counties = FXCollections.observableArrayList("Россия", "Не Россия", "Уганда");
+
     @FXML
     void initialize() {
         signUpButton.setOnAction(event -> {
             signUpNewUser();
             System.out.println("SUCCESS REGISTRATION");
-            signUpButton.getScene().getWindow().hide();
+            Main.openNewScene("/sample/view/loginPage.fxml");
         });
-        signUpBackIcon.setOnMouseClicked(event -> openNewScene("/sample/view/loginPage.fxml"));
+        signUpBackIcon.setOnMouseClicked(event -> Main.openNewScene("/sample/view/loginPage.fxml"));
         signUpCountry.setValue("Россия");
         signUpCountry.setItems(counties);
-    }
-
-    public ObservableList<String> getCounties() {
-        return counties;
-    }
-
-    public void setCounties(ObservableList<String> counties) {
-        this.counties = counties;
     }
 
     private void signUpNewUser() {
@@ -90,20 +84,5 @@ public class SignUpController {
         }
         User user = new User(firstname, lastname, username, password, location, gender);
         dbhandler.signUpUser(user);
-    }
-    public void openNewScene(String window) {
-        signUpButton.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(window));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(root));
-        newStage.setResizable(false);
-        newStage.show();
     }
 }
