@@ -33,11 +33,6 @@
                         <Font name="Calibri" size="17.0" />
                     </font>
                 </Label>
-                <Label fx:id="superuserRoleTextLabel11" layoutX="447.0" layoutY="13.0" prefHeight="22.0" prefWidth="103.0" text="Доля продаж" textAlignment="CENTER" textFill="#5c5c5c">
-                    <font>
-                        <Font name="Calibri" size="17.0" />
-                    </font>
-                </Label>
             <TabPane layoutX="14.0" layoutY="45.0" prefHeight="210.0" prefWidth="276.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="Продажи">
@@ -70,6 +65,11 @@
                   </Tab>
                </tabs>
             </TabPane>
+            <Label fx:id="superuserRoleTextLabel11" layoutX="456.0" layoutY="13.0" prefHeight="22.0" prefWidth="102.0" text="Доля продаж" textFill="#5c5c5c">
+               <font>
+                  <Font name="Calibri" size="17.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
         <Label layoutX="203.0" layoutY="20.0" prefHeight="64.0" prefWidth="296.0" style="-fx-background-color: fafafa;" textFill="#5c5c5c">
@@ -88,5 +88,6 @@
                 <Font name="Calibri Bold" size="16.0" />
             </font>
         </Button>
+      <PieChart fx:id="PieChart" layoutX="292.0" layoutY="138.0" prefHeight="228.0" prefWidth="408.0" />
     </children>
 </AnchorPane>

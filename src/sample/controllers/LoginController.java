@@ -76,17 +76,18 @@ public class LoginController {
                 e.printStackTrace();
             }
             System.out.println("Роль авторизованного пользователя: " + userRole);
-            if (userRole.equals("Superuser"))
+            if (userRole.equals("Superuser")) {
+                User.currentUserRole = "Superuser";
                 Main.openNewScene("/sample/view/superuserPage.fxml");
-
-            else if (userRole.equals("Low"))
+            } else if (userRole.equals("Low")) {
+                User.currentUserRole = "Low";
                 Main.openNewScene("/sample/view/userPage.fxml");
-        }
-        else {
-            Shake loginFieldAnim = new Shake(loginField);
-            Shake loginPassFieldAnim = new Shake(loginPassField);
-            loginFieldAnim.playAnim();
-            loginPassFieldAnim.playAnim();
+            } else {
+                Shake loginFieldAnim = new Shake(loginField);
+                Shake loginPassFieldAnim = new Shake(loginPassField);
+                loginFieldAnim.playAnim();
+                loginPassFieldAnim.playAnim();
+            }
         }
     }
 }

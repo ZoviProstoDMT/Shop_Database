@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 
 public class DataBaseHandler extends Configs {
     Connection dbConnection;
-
     public Connection getDbconnection() throws ClassNotFoundException, SQLException {
         String connectionString = "jdbc:postgresql://" + dbHost + ":" + dbPort + "/" + dbName;
         dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
@@ -36,6 +35,7 @@ public class DataBaseHandler extends Configs {
             e.printStackTrace();
         }
     }
+
     public ResultSet getUser(User user) {
         ResultSet resSet = null;
         String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_USERNAME + " =? AND " + Const.USER_PASSWORD + " =?";

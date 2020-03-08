@@ -1,5 +1,6 @@
 package sample.dataBase;
 public class User {
+    public static String currentUserRole = "";
     private String firstname;
     private String lastname;
     private String username;

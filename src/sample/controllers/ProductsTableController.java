@@ -74,7 +74,14 @@ public class ProductsTableController {
     void initialize() {
         buildData();
         ExitButton.setOnAction(event -> Main.openNewScene("/sample/view/loginPage.fxml"));
-        BackIcon.setOnMouseClicked(event -> Main.openNewScene("/sample/view/superuserPage.fxml"));
+        BackIcon.setOnMouseClicked(event -> {
+            if (User.currentUserRole.equals("Low")) {
+                Main.openNewScene("/sample/view/userPage.fxml");
+            }
+            if (User.currentUserRole.equals("Superuser")) {
+                Main.openNewScene("/sample/view/superuserPage.fxml");
+            }
+        });
     }
     public void buildData() {
         ObservableList<ObservableList> data;
