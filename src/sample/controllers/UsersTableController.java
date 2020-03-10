@@ -79,19 +79,20 @@ public class UsersTableController {
 
     @FXML
     void initialize() {
-        buildData();
+        String SQL = "SELECT * from " + Const.USER_TABLE;
+        buildData(SQL);
         ExitButton.setOnAction(event -> Main.openNewScene("/sample/view/loginPage.fxml"));
         BackIcon.setOnMouseClicked(event -> Main.openNewScene("/sample/view/superuserPage.fxml"));
         AddUser.setOnMouseClicked(event -> Main.openNewScene("/sample/view/addUser.fxml"));
         FindUser.setOnMouseClicked(event -> {
-            String searchId = IdField.getText().trim();
-            String namefield = FirstnameField.getText().trim();
+            String idfield = IdField.getText().trim();
+            String namedield = FirstnameField.getText().trim();
             String usernamefield = UsernameField.getText().trim();
-            findUser(searchId, namefield, usernamefield);
+            findUser(idfield,namedield,usernamefield);
         });
         UpRole.setOnMouseClicked(event -> {
                 DataBaseHandler dbhandler = new DataBaseHandler();
-                ObservableList<ObservableList> list = buildData();
+                ObservableList<ObservableList> list = buildData(SQL);
                 String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
                 System.out.println("Повышение роли для пользователя с юзернеймом: " + name);
                 dbhandler.changeUserRole(name, "Superuser");
@@ -100,7 +101,7 @@ public class UsersTableController {
         });
         DownRole.setOnMouseClicked(event -> {
             DataBaseHandler dbhandler = new DataBaseHandler();
-            ObservableList<ObservableList> list = buildData();
+            ObservableList<ObservableList> list = buildData(SQL);
             String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
             System.out.println("Понижение роли для пользователя с юзернеймом: " + name);
             dbhandler.changeUserRole(name, "Low");
@@ -109,7 +110,7 @@ public class UsersTableController {
         });
         DeleteUser.setOnMouseClicked(event -> {
                 DataBaseHandler dbhandler = new DataBaseHandler();
-                ObservableList<ObservableList> list = buildData();
+                ObservableList<ObservableList> list = buildData(SQL);
                 String name = list.get(tableUsers.getSelectionModel().getSelectedIndex()).get(3).toString();
             if (tableUsers.getSelectionModel().getSelectedIndex() >= 0) {
                 System.out.println("Удалён пользователь с юзернеймом: " + name);
@@ -120,45 +121,53 @@ public class UsersTableController {
         });
     }
 
-    public ObservableList<ObservableList> buildData() {
+    public ObservableList<ObservableList> buildData(String SQL) {
         ObservableList<ObservableList> data;
         DataBaseHandler dbHandler = new DataBaseHandler();
         data = FXCollections.observableArrayList();
-        try{
-            String SQL = "SELECT * from " + Const.USER_TABLE;
-            ResultSet rs = dbHandler.getDbconnection().createStatement().executeQuery(SQL);
+            try {
+                ResultSet rs = dbHandler.getDbconnection().createStatement().executeQuery(SQL);
 
-            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
-                final int j = i;
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
+                for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+                    final int j = i;
+                    TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
+                    col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                        public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                            return new SimpleStringProperty(param.getValue().get(j).toString());
+                        }
+                    });
 
-                tableUsers.getColumns().addAll(col);
-            }
-            while(rs.next()){
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
-                    row.add(rs.getString(i));
+                    tableUsers.getColumns().addAll(col);
                 }
-                data.add(row);
+                while (rs.next()) {
+                    ObservableList<String> row = FXCollections.observableArrayList();
+                    for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                        row.add(rs.getString(i));
+                    }
+                    data.add(row);
+                }
+                tableUsers.setItems(data);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error on Building Data");
             }
-            tableUsers.setItems(data);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Error on Building Data");
-        }
-        return data;
+            return data;
     }
-    private void findUser(String searchId, String namefield, String usernamefield) {
-        /* tableUsers.getItems().stream().filter(item -> item.toString() == usernamefield).findAny().ifPresent(item -> {
-                    tableUsers.getSelectionModel().select(item);
-                    tableUsers.scrollTo(item);
-                }); */
+    private void findUser(String idfield, String namefield, String usernamefield) {
+        if (!idfield.isEmpty()) {
+            String SQL = "SELECT * from " + Const.USER_TABLE + " WHERE " + Const.USER_ID + " = '" + idfield + "';";
+            buildData(SQL);
+        }
+        else if (!namefield.isEmpty()) {
+            String SQL = "SELECT * from " + Const.USER_TABLE + " WHERE " + Const.USER_FIRSTNAME + " = '" + namefield + "';";
+            buildData(SQL);
+        } else if (!usernamefield.isEmpty()) {
+            String SQL = "SELECT * from " + Const.USER_TABLE + " WHERE " + Const.USER_USERNAME + " = '" + usernamefield + "';";
+            buildData(SQL);
+        }
+        if (idfield.isEmpty() && namefield.isEmpty() && usernamefield.isEmpty()) {
+            Main.openNewScene("/sample/view/usersTablePage.fxml");
+        }
     }
 }
 
