@@ -27,7 +27,7 @@
                         <Font name="Calibri" size="15.0" />
                     </font>
                 </Label>
-                <Circle fill="#63ff85" layoutX="19.0" layoutY="286.5" radius="4.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                <Circle fx:id="rolePoint" fill="LIGHTGREEN" layoutX="19.0" layoutY="286.5" radius="4.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                 <Label fx:id="superuserRoleTextLabel1" layoutX="23.0" layoutY="14.0" prefHeight="18.0" prefWidth="216.0" text="Работа с таблицами:" textFill="#5c5c5c">
                     <font>
                         <Font name="Calibri" size="17.0" />
